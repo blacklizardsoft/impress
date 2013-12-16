@@ -1,3 +1,27 @@
+0.0.66 / 2013-12-16
+==================
+
+  * Fixed websocket plugin to display warning when "websocket" module not installed instead of process crash
+  * Improved exceptions handling in Impress core, exceptions will be logged to file, workers will restart, master will exit on exception
+  * Refactored plugins optional loader for all plugins
+  * Fixed impress.log.js, prevent exception in case when other application deletes log
+  * Fixed parameters in 'exit' event when spawn worker processes
+
+0.0.65 / 2013-12-15
+==================
+
+  * SSE moved from Impress core into separate plugin impress.sse.js
+  * Refactored event propagation between master and workers and between cloud controller and node clusters using IPC and ZeroMQ
+  * Moved userEvent, channelEvent and globalEvent from impress.sse to impress.events namespace
+  * Improved example for WebSockets
+  * Directory /sites in default examples config.js file renamed to /applications
+
+0.0.64 / 2013-12-14
+==================
+
+  * WebSockets server support (optional), use "npm install websocket" add 'impress.websocket' plugin in config
+  * Added example for WebSockets, see /examples/connest.ws/get.js
+
 0.0.63 / 2013-12-11
 ==================
 

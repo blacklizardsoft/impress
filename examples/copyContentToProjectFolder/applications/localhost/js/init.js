@@ -135,6 +135,37 @@ global.onLoad(function() {
 	$(document).on('click', '#menuSSE', function() {
 	});
 
+	$(document).on('click', '#menuWS', function() {
+		ws = new WebSocket("ws://127.0.0.1:80/examples/connect.ws");
+		panelCenter.html(
+			'<a class="button silver" id="btnWsClose"><span class="icon delete"></span>Close WebSocket connection</a> '+
+			'<a class="button silver" id="btnWsSend"><span class="icon handshake"></span>Send "Hello" to WebSocket</a>'+
+			'<hr>Connecting...<hr>'
+		);
+
+		ws.onopen = function() {
+			panelCenter.append("Connection opened<hr>");
+		}
+
+		ws.onclose = function() {
+			panelCenter.append("Connection closed<hr>");
+		}
+
+		ws.onmessage = function(evt) {
+			panelCenter.append("Message from server: "+evt.data+"<hr>");
+		}
+
+		$('#btnWsClose').on('click', function() {
+			ws.close();
+			$('#btnWsClose').hide();
+		});
+
+		$('#btnWsSend').on('click', function() {
+			panelCenter.append("Sending to server: Hello<hr>");
+			ws.send("Hello");
+		});
+	});
+
 	$(document).on('click', '#menuSendMail', function() {
 	});
 

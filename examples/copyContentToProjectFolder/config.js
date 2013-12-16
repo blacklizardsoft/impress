@@ -11,7 +11,6 @@ module.exports = {
 		require: [ // Plugins list
 		    "impress.log",
 		    "impress.security",
-			"impress.geoip",
 			"impress.uglify"
 		],
 		disabled: [ // Disabled plugins
@@ -26,7 +25,10 @@ module.exports = {
 			"cms",
 			"cms.mysql",
 			"impress.health",
-			"impress.cloud"
+			"impress.cloud",
+			"impress.websocket",
+			"impress.sse",
+			"impress.geoip"
 		]
 	},
 
@@ -131,7 +133,7 @@ module.exports = {
 			address:   "127.0.0.1",
 			port:      80,
 			static:    ["*/css/*", "*/images/*", "*/js/*", "/favicon.ico"], // static definitions using wildcard "*"
-			process:   "/sites/[host]",         // execute JavaScript from specified directory
+			process:   "/applications/[host]",         // execute JavaScript from specified directory
 			hosts:     ["localhost"]            // virtual hosts for this server (see hosts definitions below)
 		},
 		//static: {
@@ -139,7 +141,7 @@ module.exports = {
 		//	address:   "127.0.0.1",
 		//	port:      81,
 		//	static:    ["/css/*", "/images/*", "/js/*", "/favicon.ico", "/index.html"],
-		//	process:   "/sites/[host]",
+		//	process:   "/applications/[host]",
 		//	hosts:     ["localhost"]
 		//},
 		//ssl: {
@@ -147,7 +149,7 @@ module.exports = {
 		//	address:   "127.0.0.1",
 		//	port:      443,
 		//	static:    ["/css/*", "/images/*", "/js/*", "/favicon.ico", "/index.html"],
-		//	process:   "/sites/[host]",
+		//	process:   "/applications/[host]",
 		//	hosts:     ["localhost", "mezha"]
 		//}
 	},
@@ -157,7 +159,7 @@ module.exports = {
 		localhost: {
 			name:     "127.0.0.1",
 			static:    ["*/css/*", "*/images/*", "*/js/*", "/favicon.*"],
-			process:  "/sites/localhost"
+			process:  "/applications/localhost"
 		}
 	},
 
