@@ -1,3 +1,16 @@
+0.0.68 / 2013-12-18
+==================
+
+  * Modules geoip-lite, memcached, mongodb, mysql, mysql-utilities, nodemailer, websocket, zmq are excluded from dependencies to reduce Impress initial installation size, now listed modules are optional and can be added using npm install
+  * Improved impress.require
+
+0.0.67 / 2013-12-17
+==================
+
+  * Fixed startup check
+  * Load additional plugins if confog.js changed and new (not loaded) plugins are found in config
+  * Unload disabled plugins if they already loaded at start or previous soft restart
+
 0.0.66 / 2013-12-16
 ==================
 
