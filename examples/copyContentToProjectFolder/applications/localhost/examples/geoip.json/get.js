@@ -1,6 +1,6 @@
 module.exports = function(req, res, callback) {
 
-    if (impress.geoip) {
+	if (impress.geoip) {
 		impress.dns.lookup('nodejs.org', 4, function(err, address, family) {
 			res.context.data = {
 				req: {
