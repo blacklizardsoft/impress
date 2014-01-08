@@ -16,7 +16,8 @@ $ npm install impress
 
   - Can serve multiple applications and sites on multiple domains
   - Serves multiple ports, network interfaces, hosts and protocols
-  - Can be run on one or multiple servers
+  - Can scale on multiple servers
+  - Supports application sandboxing (configuration, db and memory access isolation)
   - Supports one or multiple CPU cores with following instantiation strategies:
     - Single instance (one process)
     - Instance specialization (multiple processes, one master and different workers for each server)
@@ -68,8 +69,8 @@ $ npm install impress
 ## Configuration
 
 1. Install module using npm
-2. Edit config.js file in project folder (or leave it untouched if you want just to test Impress)
-3. If you want to store persistent sessions in MongoDB you need this DBMS installed and you need to run "node setup.js" before starting Impress
+2. Example will start automaticaly and you can see it in browser
+3. Add applications to /applications and edit files in /config
 4. Run Impress using command "node server.js"
 
 ## Handler examples and file system url mapping
@@ -100,21 +101,12 @@ Handler: /applications/localhost/api/examples/getUsers.json/get.js
 Following "server.js" is stating file. Run it using command line "node server" for debug or "nohup node server" for production.
 ```javascript
 require('impress');
-impress.init({
-	master: function() {
-		// Place here other initialization code
-		// to be executed after Impress initialization (master process)
-	},
-	worker: function() {
-		// Place initialization code for workers
-	},
-	instance: function() {
-		// Place initialization code for any instance
-	},
-	shutdown: function() {
-		// Place finalization code here
-	}
+
+impress.server.on("start", function() {
+	// place code to be executed after all applecation started
 });
+
+impress.server.srart();
 ```
 
 File "access.js" is something line ".htaccess", you can easily define access restrictions for each folder, placing "access.js" in it.
@@ -133,8 +125,8 @@ module.exports = {
 File "request.js": place such file in folder to be executed on each request (GET, POST, PUT, etc.).
 If folder not contains "request.js" it will inherit from parent folder and so on. Example:
 ```javascript
-module.exports = function(req, res, callback) {
-	res.context.data = {
+module.exports = function(client, callback) {
+	client.context.data = {
 		title: "Page Title",
 		users: [
 			{
@@ -145,7 +137,7 @@ module.exports = function(req, res, callback) {
 				emails: ["user3@gmail.com", "user4@gmail.com", "user5@gmail.com"]
 			}
 		],
-		session: JSON.stringify(impress.sessions[req.impress.session])
+		session: client.session
 	};
 	callback();
 }
@@ -154,10 +146,10 @@ module.exports = function(req, res, callback) {
 File "get.js": place such file in folder to be executed on GET request. For POST request "post.js", and so on.
 If folder not contains "get.js" it will inherit from parent folder and so on. Example:
 ```javascript
-module.exports = function(req, res, callback) {
-	db.polltool.query('select * from City', function(err, rows, fields) {
+module.exports = function(client, callback) {
+	database1.query('select * from City', function(err, rows, fields) {
 		if (err) throw err;
-		res.context.data = { rows:rows, fields:fields };
+		client.context.data = { rows:rows, fields:fields };
 		callback();
 	});
 }
@@ -196,16 +188,16 @@ File "html.template": place such file in folder as a main page template. Example
 </html>
 ```
 
-## Contributors 
+## Contributors
 
   - Timur Shemsedinov (marcusaurelius)
-  - Sergey Andriyaschenko (tblasv)
+  - See github
 
-## License 
+## License
 
 Dual licensed under the MIT or RUMI licenses.
 
-Copyright (c) 2012-2013 MetaSystems &lt;timur.shemsedinov@gmail.com&gt;
+Copyright (c) 2012-2014 MetaSystems &lt;timur.shemsedinov@gmail.com&gt;
 
 License: RUMI
 
