@@ -82,6 +82,12 @@ global.onLoad(function() {
 		});
 	});
 
+	$(document).on('click', '#menuWorker', function() {
+		$.get('/examples/forkWorker.json', function(res) {
+			panelCenter.html('Worker process forked, see console for output.');
+		});
+	});
+
 	$(document).on('click', '#menuTemplate', function() {
 		window.location = '/examples/override';
 	});
@@ -182,6 +188,17 @@ global.onLoad(function() {
 	}
 
 	$(document).on('click', '#menuSendMail', function() {
+	});
+
+	$(document).on('click', '#btnApplySetup', function() {
+		var npmModules = $('#npmModules input'),
+			npmChecked = [];
+		npmModules.each(function() {
+			if ($(this)[0].checked) npmChecked.push($(this).val());
+		});
+		$.post('/setup/apply.json', { npmChecked: npmChecked.join(',') }, function(res) {
+			panelCenter.html('<pre>Module(s) installing... See console output.</pre>');
+		});
 	});
 
 });
