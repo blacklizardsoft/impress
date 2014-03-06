@@ -1,3 +1,14 @@
+0.1.11 / 2014-03-06
+==================
+
+  * Fixed critical bug: multiple applications support renewed (last working version with multiple applications was 0.0.71)
+
+0.1.10 / 2014-03-05
+==================
+
+  * Fixed critical security bug: access.js permission check
+  * Added extra check in filesystem cache watcher to avoid exception, need further investigation
+
 0.1.9 / 2014-02-12
 ==================
 
