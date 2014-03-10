@@ -1,3 +1,14 @@
+0.1.13 / 2014-03-09
+==================
+
+  * Critical fixes in logs rotation scheduler
+
+0.1.12 / 2014-03-08
+==================
+
+  * Fixed logs rotation scheduler
+  * Refactored install.js and removed setup.js
+
 0.1.11 / 2014-03-06
 ==================
 
