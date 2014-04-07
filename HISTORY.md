@@ -1,3 +1,21 @@
+0.1.19 / 2014-04-03
+==================
+
+  * Fixed critical bug in npm script (install.js) to reinstall Impress as a service on npm update
+
+0.1.18 / 2014-04-02
+==================
+
+  * Fixed shell script for running Impress as a service (if Impress is already installed you need to run impress/bin/install.sh again to refresh service script)
+  * Fixed DBMI interface (for mongodb)
+
+0.1.17 / 2014-04-01
+==================
+
+  * Fixed security issue in directory index generator: access.js will not be visible and accessible even if it matches static regexp
+  * Fixed sort order in directory index, added links to each directory in path to the current
+  * Added support for httpOnly cookies
+
 0.1.16 / 2014-03-27
 ==================
 
