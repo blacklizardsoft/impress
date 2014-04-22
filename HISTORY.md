@@ -1,3 +1,27 @@
+0.1.24 / 2014-04-21
+==================
+
+  * Fixed long worker fork from child process in cluster mode, it translates request to master process (via IPC message "impress:longworker") and master process forks
+  * Added new api examples for mongodb, file access, request to remote api and hybrid asynchronous example
+
+0.1.23 / 2014-04-19
+==================
+
+  * Added database shorthand for database access. Long name: client.application.databases.databaseName.collectionOrTableName.accessMethodName. Short name we can specify in appName/config/databases.js database parameter "alias"
+  * Added new examples, refactored examples structure and database access
+  * Fixed Client.fileHandler (callback leak)
+
+0.1.22 / 2014-04-09
+==================
+
+  * Fixed API introspection: .existsSync replaced to asynchronous analogs with async.parallel
+
+0.1.21 / 2014-04-08
+==================
+
+  * Added API introspection (set intro: true in access.js to switch on)
+  * Added "update" command to update OS and npm: service impress update
+
 0.1.20 / 2014-04-06
 ==================
 
